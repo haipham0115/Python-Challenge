@@ -5,12 +5,12 @@ import os
 #get the path to the budget_data file
 #path = "../Resources/budget_data.csv"
 input_path = os.path.join('..', 'PyBank', 'Resources', 'budget_data.csv')
-#output_path = 
+output_path = os.path.join('..', 'PyBank', 'Resources', 'budget_data_output.txt')
 
 
 
 #read the file
-with open(path, 'r') as csvfile:
+with open(input_path, 'r') as csvfile:
 
 	csvreader = csv.reader(csvfile, delimiter = ",")
 	csv_header = next(csvreader)
@@ -76,4 +76,11 @@ with open(path, 'r') as csvfile:
 	print("greatest decrease in profit: " , greatest_decrease, " ", greatest_decrease_month)
 
 	
-	
+	with open(output_path, 'w') as output_text:
+		output_text.write("Financial Analysis \n")
+		output_text.write("------------------------------------------------ \n")
+		output_text.write("total months: "+ str(months) + "\n")
+		output_text.write("total: " + str(total_profit_loss) + "\n")
+		output_text.write("verage change: " + str(avg_total) + "\n")
+		output_text.write("greatest increase in profit: "  + str(greatest_increase_month) + " " + str(greatest_increase) + " " +"\n")
+		output_text.write("greatest decrease in profit: "  + str(greatest_decrease_month) + " " + str(greatest_decrease) + " " +"\n")
