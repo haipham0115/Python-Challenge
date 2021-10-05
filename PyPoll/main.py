@@ -10,6 +10,10 @@ with open(path) as csvfile:
 	csvreader = csv.reader(csvfile)
 	header = next(csvreader)
 
+
+
+	print("Election Results")
+	print("-----------------------------")
 	total_votes = 0
 
 	votes = {}
@@ -23,6 +27,23 @@ with open(path) as csvfile:
 		
 		total_votes +=1
 
-	print(votes)
+	print(f"Total votes: {total_votes}")
+	print("-----------------------------")
 
-	print(votes.items())
+	percentage = 0
+
+	winner = ''
+	winner_votes = 0
+
+	for item in votes:
+		if votes[item] > winner_votes:
+			winner = item
+			winner_votes = votes[item]
+
+		percentage = "{:.3%}".format((votes[item] / total_votes))
+		print(item, ":", percentage, votes[item])
+	
+
+	print("-----------------------------")
+	print(f"winner: {winner}")
+	print("-----------------------------")
